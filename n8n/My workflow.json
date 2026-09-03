@@ -1,0 +1,140 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "767135fd-cefd-432a-9d2a-0a874d9de6bf",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -176,
+        0
+      ],
+      "id": "db803f2f-6795-45c5-ab82-d4c380be20f4",
+      "name": "Webhook",
+      "webhookId": "767135fd-cefd-432a-9d2a-0a874d9de6bf"
+    },
+    {
+      "parameters": {
+        "organizationId": "6a0e7556a546e95caf0e74bb",
+        "service": "instagram",
+        "channelId": "6a0e7835090476fb9941e2a7",
+        "text": "={{ $('Webhook').item.json.body.post_title }}\n\n{{ $json.output.replace(/<think>[\\s\\S]*?<\\/think>/g, '').trim() }}",
+        "mode": "shareNow",
+        "assetsUi": {
+          "assetValues": [
+            {
+              "url": "={{ $('Webhook').item.json.body.image_url }}"
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-buffer.bufferUploader",
+      "typeVersion": 1,
+      "position": [
+        384,
+        0
+      ],
+      "id": "1dc38ec8-279a-484d-8514-cebd88d84e2e",
+      "name": "Buffer Uploader",
+      "credentials": {
+        "bufferApi": {
+          "id": "OBYna4AHy9VciCo7",
+          "name": "Buffer account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Tolong ringkas teks berita berikut agar cocok dijadikan caption Instagram. Buat maksimal 2-3 paragraf pendek, gaya bahasa menarik, tambahkan emoji, dan beri hashtag yang relevan di akhir.Berikut beritanya:{{ $json.body.post_content }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        64,
+        0
+      ],
+      "id": "ef0bd47a-b641-406b-8a08-b271bb04ef08",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "qwen/qwen3.6-27b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        64,
+        176
+      ],
+      "id": "9dc5bce0-df9d-40ac-bae9-2d4245e75221",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "BQBrFtzAA08p5eC7",
+          "name": "Groq account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Buffer Uploader",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "8c9ca5e4-0c5b-456c-ba87-62d0ff776119",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dc96f10ae7dc95d3c138575ba243a0a167923dbcb524841d451aadf9135d5fb3"
+  },
+  "nodeGroups": [],
+  "id": "nsRJHPnGrrdbrz4w",
+  "tags": []
+}
