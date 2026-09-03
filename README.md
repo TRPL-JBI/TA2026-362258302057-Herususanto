@@ -1,58 +1,64 @@
-# 📖 Tentang Proyek
+<div align="center">
 
-Sistem ini merupakan luaran dari penelitian Tugas Akhir yang berjudul **"Rancang Bangun Sistem Otomatisasi Pengelolaan Konten Berita Politeknik Negeri Banyuwangi Menggunakan N8N"**.
+# Rancang Bangun Sistem Otomatisasi Pengelolaan Konten Berita Politeknik Negeri Banyuwangi Menggunakan N8N
 
-Proyek ini dirancang untuk mengotomatisasi alur distribusi, pemrosesan, dan publikasi konten berita ke situs web profil kampus Politeknik Negeri Banyuwangi. Sistem ini mengintegrasikan alur kerja otomatisasi pada platform n8n dengan CMS WordPress melalui *custom endpoint plugin* (`webhook-n8n.php`) guna menjaga efisiensi dan konsistensi publikasi informasi secara berkala.
-
----
-
-## 📁 Struktur Berkas Repositori
-
-Repositori ini terdiri dari tiga komponen utama:
-
-* `Plugin/` : Berisi *source code* plugin custom WordPress (`webhook-n8n.php`) yang bertindak sebagai penerima *payload* data (*webhook receiver*) untuk diproses menjadi postingan berita di WordPress.
-* `n8n/` : Berisi berkas konfigurasi *workflow automation* dalam format `.json` untuk diimpor ke aplikasi n8n.
-* `www/` : Berisi arsip berkas *source code* website WordPress lengkap (`wordpress.zip`) yang digunakan pada lingkungan pengujian/pengembangan.
+Sistem Otomatisasi Publikasi Artikel dan Manajemen Konten Berita Berbasis Web  
+Dikembangkan untuk Efisiensi Distribusi Konten Informasi di Lingkungan Kampus  
+**Program Studi Teknologi Rekayasa Perangkat Lunak**  
+**Politeknik Negeri Banyuwangi**
 
 ---
 
-## 🛠️ Teknologi & Kebutuhan Sistem
+![System - WordPress](https://img.shields.io/badge/System-WordPress-blue?style=for-the-badge&logo=wordpress)
+![Automation - n8n](https://img.shields.io/badge/Automation-n8n-EA4B71?style=for-the-badge&logo=n8n)
+![Language - PHP](https://img.shields.io/badge/Language-PHP_8.x-777BB4?style=for-the-badge&logo=php)
+![Database - MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?style=for-the-badge&logo=mysql)
+![Server - Laragon](https://img.shields.io/badge/Environment-Laragon-0E83CD?style=for-the-badge)
 
-* **Web Server & Database:** Laragon / XAMPP (Apache, MySQL/MariaDB)
-* **Bahasa Pemrograman:** PHP 8.x
-* **CMS:** WordPress
-* **Workflow Automation Platform:** n8n (Self-hosted / Cloud)
-
----
-
-## 🚀 Panduan Pemasangan & Penggunaan
-
-### 1. Konfigurasi Website WordPress
-1. Ekstrak atau pasang berkas WordPress dari folder `www/` ke web server lokal (contoh: `C:\laragon\www\` atau `htdocs`).
-2. Buat database baru di phpMyAdmin dan impor basis data proyek terkait.
-3. Pastikan konfigurasi berkas `wp-config.php` telah mengarah ke basis data yang benar.
-
-### 2. Pemasangan Custom Plugin
-1. Salin berkas `webhook-n8n.php` dari folder `Plugin/` ke direktori website lokal:  
-   `wp-content/plugins/`
-2. Masuk ke **Dashboard Admin WordPress** > menu **Plugins** > **Installed Plugins**.
-3. Cari plugin webhook tersebut lalu klik **Activate**.
-
-### 3. Import Workflow ke n8n
-1. Buka dashboard aplikasi n8n.
-2. Masuk ke menu **Workflows** di bilah sisi kiri.
-3. Klik tombol **Add Workflow** lalu pilih opsi **Import from File**.
-4. Pilih berkas `.json` yang terdapat pada folder `n8n/` di repositori ini.
-5. Sesuaikan URL *Webhook* atau kredensial API WordPress tujuan.
-6. Simpan (*Save*) dan aktifkan alur kerja (*Activate workflow*).
+</div>
 
 ---
 
-## 👨‍💻 Dikembangkan Oleh:
+## 📖 Tentang Proyek
 
+Proyek Tugas Akhir ini merancang dan membangun sistem alur kerja otomatisasi pengunggahan serta pengelolaan artikel berita pada situs resmi Politeknik Negeri Banyuwangi. Sistem ini menghubungkan alur kerja otomatisasi berbasis **n8n** dengan **CMS WordPress** melalui *custom plugin webhook* (`webhook-n8n.php`), sehingga artikel dapat diproses, dijadwalkan, dan diterbitkan tanpa intervensi manual berulang.
+
+---
+
+## 📁 Struktur Repositori
+
+* `Plugin/` : Berisi *source code* *custom plugin* WordPress (`webhook-n8n.php`) yang berfungsi menerima kiriman data (*payload webhook*) dari n8n.
+* `n8n/` : Berisi berkas alur kerja n8n dalam format `.json` yang siap diimpor.
+* `www/` : Berisi cadangan arsip instalasi website WordPress (`wordpress.zip`).
+
+---
+
+## 🛠️ Panduan Instalasi & Penggunaan
+
+### 1. Website WordPress
+1. Ekstrak berkas `wordpress.zip` di dalam folder `www/` ke direktori web server lokal (misalnya `C:\laragon\www\`).
+2. Buat database baru di phpMyAdmin, sesuaikan kredensial pada berkas `wp-config.php`.
+
+### 2. Pemasangan Plugin
+1. Salin file `webhook-n8n.php` dari folder `Plugin/` ke direktori `wp-content/plugins/` di website lokal.
+2. Buka panel admin WordPress (`/wp-admin`), masuk ke menu **Plugins**, lalu klik **Activate** pada plugin tersebut.
+
+### 3. Import Workflow n8n
+1. Buka dashboard n8n.
+2. Buat alur kerja baru > klik menu titik tiga (⋮) di pojok kanan atas > pilih **Import from File**.
+3. Pilih berkas `.json` dari folder `n8n/`.
+4. Sesuaikan kredensial dan URL webhook, lalu simpan dan aktifkan alur kerja (*Active*).
+
+---
+
+<div align="center">
+
+**Dikembangkan Oleh:**  
 **Heru Susanto**  
 NIM. 362258302057  
 Program Studi Sarjana Terapan Teknologi Rekayasa Perangkat Lunak  
 Jurusan Bisnis dan Informatika  
 Politeknik Negeri Banyuwangi  
 2026
+
+</div>
